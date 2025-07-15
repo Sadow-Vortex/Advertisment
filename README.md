@@ -1,4 +1,4 @@
-# 🧺 Advertisement API - Kisan Seva 🌾
+# 🧺 Advertisement API 🌾
 
 A Spring Boot backend for managing and displaying advertisements with image upload, view tracking, and category-based filtering. Designed for the **Kisan Seva** platform.
 
