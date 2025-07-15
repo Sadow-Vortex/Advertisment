@@ -1,23 +1,23 @@
-🧺 Advertisement API - Kisan Seva 🌾
-A Spring Boot backend for managing and displaying advertisements with image upload, view tracking, and category-based filtering. Designed for the Kisan Seva platform.
+# 🧺 Advertisement API - Kisan Seva 🌾
 
-🧰 Tech Stack
-Java 23
+A Spring Boot backend for managing and displaying advertisements with image upload, view tracking, and category-based filtering. Designed for the **Kisan Seva** platform.
 
-Spring Boot
+---
 
-Spring Data JPA
+## 🧰 Tech Stack
 
-H2 / MySQL (configurable)
+- **Java 23**
+- **Spring Boot**
+- **Spring Data JPA**
+- **H2 / MySQL (configurable)**
+- **Multipart File Upload**
+- **REST APIs**
 
-Multipart File Upload
+---
 
-REST APIs
+## 📂 Project Structure
 
-📂 Project Structure
-arduino
-Copy
-Edit
+```
 src/
 ├── controller/
 │   └── AdvertisementController.java
@@ -33,32 +33,33 @@ src/
 ├── response/
 │   └── ApiResponse.java
 └── AdvertisementApplication.java
-🔑 Features
-✅ Add new advertisements
+```
 
-✅ Fetch all ads / ads by ID
+---
 
-✅ Get ads by Category / Subcategory
+## 🔑 Features
 
-✅ View count tracking (?viewerId=1)
+- ✅ Add new advertisements
+- ✅ Fetch all ads / ads by ID
+- ✅ Get ads by Category / Subcategory
+- ✅ View count tracking (`?viewerId=1`)
+- ✅ Serve uploaded images from `uploads` folder
+- ✅ Filter active ads (`adv_Status = true`)
+- ✅ Sort ads by popularity / recent date
 
-✅ Serve uploaded images from uploads folder
+---
 
-✅ Filter active ads (adv_Status = true)
+## 📦 API Endpoints
 
-✅ Sort ads by popularity / recent date
+### ➕ Add Advertisement
 
-📦 API Endpoints
-➕ Add Advertisement
-bash
-Copy
-Edit
+```
 POST /adv
-Request Body:
+```
 
-json
-Copy
-Edit
+**Request Body:**
+
+```json
 {
   "advUserID": 1,
   "adv_CategoryID": 2,
@@ -75,96 +76,120 @@ Edit
     "longitude": 77.1734
   }
 }
-📥 Get All Ads
-bash
-Copy
-Edit
+```
+
+---
+
+### 📥 Get All Ads
+
+```
 GET /adv
-🔍 Get Ad by ID (with View Count)
-bash
-Copy
-Edit
+```
+
+---
+
+### 🔍 Get Ad by ID (with View Count)
+
+```
 GET /adv/{id}?viewerId=1
-Increments view count per user.
+```
 
-🧾 Get Ads by Category
-bash
-Copy
-Edit
+- Increments view count per user.
+
+---
+
+### 🧾 Get Ads by Category
+
+```
 GET /adv/category/{categoryId}
-🗂️ Get Ads by Subcategory
-bash
-Copy
-Edit
+```
+
+---
+
+### 🗂️ Get Ads by Subcategory
+
+```
 GET /adv/subCategory/{subCategoryId}
-📤 Upload Advertisement Image
-bash
-Copy
-Edit
+```
+
+---
+
+### 📤 Upload Advertisement Image
+
+```
 POST /adv/upload
-Request Type: multipart/form-data
-Form Field: file (Image)
+```
 
-Example using cURL:
+**Request Type:** `multipart/form-data`  
+**Form Field:** `file` (Image)
 
-bash
-Copy
-Edit
+**Example using cURL:**
+
+```bash
 curl -X POST http://localhost:2012/adv/upload \
   -H "Content-Type: multipart/form-data" \
   -F "file=@/path/to/image.jpg"
-Response:
+```
 
-json
-Copy
-Edit
+**Response:**
+
+```json
 {
   "status_code": 200,
   "status_msg": "Success",
   "data": "http://localhost:2012/uploads/filename.jpg"
 }
-🌐 Accessing Uploaded Images
+```
+
+---
+
+## 🌐 Accessing Uploaded Images
+
 Uploaded files are served statically via:
 
-bash
-Copy
-Edit
+```
 http://localhost:2012/uploads/<filename>
-Example
-bash
-Copy
-Edit
-http://localhost:2012/uploads/mango.jpg
-Enabled in WebConfig.java:
+```
 
-java
-Copy
-Edit
+### Example
+
+```
+http://localhost:2012/uploads/mango.jpg
+```
+
+**Enabled in** `WebConfig.java`:
+
+```java
 @Override
 public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/uploads/**")
             .addResourceLocations("file:uploads/");
 }
-✅ Ensure /uploads folder exists and is writable.
+```
 
-⚙️ Run Locally
-Clone the repo
+> ✅ Ensure `/uploads` folder exists and is writable.
 
-Make sure /uploads/ directory is present
+---
 
-Run the app:
+## ⚙️ Run Locally
 
-bash
-Copy
-Edit
+1. Clone the repo  
+2. Make sure `/uploads/` directory is present  
+3. Run the app:
+
+```bash
 ./mvnw spring-boot:run
-Access:
+```
 
-bash
-Copy
-Edit
+4. Access:
+
+```
 http://localhost:2012/adv
-📞 Contact
-Made with ❤️ for Kisan Seva
-Maintainer: Rishi Prasad Manna
+```
 
+---
+
+## 📞 Contact
+
+Made with ❤️ for **Kisan Seva**  
+Maintainer: [Rishi Prasad Manna](mailto:rishimanna33@gmail.com)
