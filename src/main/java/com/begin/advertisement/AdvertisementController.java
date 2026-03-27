@@ -143,9 +143,8 @@ public class AdvertisementController {
             Path filePath = uploadDir.resolve(fileName);
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            String fileUrl = "http://10.0.167.11:2012/uploads/" + fileName;
+            return ResponseEntity.ok(Map.of("filename", fileName));
 
-            return ResponseEntity.ok(Map.of("url", fileUrl));
         } catch (IOException e) {
             return ResponseEntity.internalServerError().body(Map.of("error", "Upload failed"));
         }

@@ -17,6 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:/C:/Users/KIIT/IdeaProjects/Advertisement/uploads/");
+                .addResourceLocations("file:uploads/");
     }
 }
